@@ -1,0 +1,79 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define SIZE 5
+
+struct queue{
+    int front, rear;
+    int data[SIZE];
+};
+
+typedef struct queue Q;
+
+void enqueue(Q *q, int item){
+    if((q->rear + 1) % SIZE == q->front){
+        printf("\n Queue is full:");
+    }
+    else{
+        q->rear = (q->rear  + 1) % SIZE;
+        q->data[q->rear] = item;
+        if(q->front == -1){
+            q->front = q->rear;
+        }
+    }
+}
+
+void dequeue(Q *q){
+    if(q->front == -1){
+        printf("\n Queue is Empty");
+    }
+    else{
+        int p_item = q->data[q->front];
+        if(q->front == q->rear){
+            q->front = -1;
+            q->rear = -1;
+        }
+        else{
+            q->front = (q->front + 1) % SIZE;
+        }
+        printf("\n The dequeued element is : %d",p_item);
+    }
+}
+
+void display(Q q){
+    if(q.front == -1){
+        printf("\n Queue is empty");
+    }
+    else{
+        printf("\n Contents of queue are : ");
+        for(int i = q.front; i != q.rear; i = (i+1)%SIZE){
+            printf("%d\t",q.data[i]);
+        }
+        printf("%d\t",q.data[q.rear]);
+    }
+}
+
+int main(){
+    Q q = {-1,-1};
+    int ch,item;
+    for(;;){
+        printf("\n 1. Enqueue / Push");
+        printf("\n 2. Dequeue / Pop");
+        printf("\n 3. Display");
+        printf("\n 4. Exit");
+        printf("\n Enter your choice : ");
+        scanf("%d", &ch);
+        switch(ch){
+            case 1: printf("Enter the element that need to be enqueued into the queue : ");
+                    scanf("%d", &item);
+                    enqueue(&q, item);
+                    break;
+            case 2: dequeue(&q);
+                    break;
+            case 3: display(q);
+                    break;
+            default: exit(0);
+        }
+    }
+    return 0;
+}
