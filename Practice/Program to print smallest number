@@ -1,0 +1,14 @@
+#include<Stdio.h>
+int main(){
+  int f,s;
+
+  printf("Enter the first number : ");
+  scanf("%d",&f);
+
+  printf("Enter the second number : ");
+  scanf("%d", &s);
+
+  (f>s && printf("%d is the smallest number",s)) || (f<s && printf("%d is the smallest number",f)) || (f==s && printf("%d is same as %d",f,s));
+
+  return 0;
+}
