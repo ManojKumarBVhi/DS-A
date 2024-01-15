@@ -15,7 +15,3 @@ This repository contains a range of programs and exercises covering key areas in
 ### **Algorithmic Techniques:** 
 - Recursion 
 - Dynamic Programming
-
-### **About Me**
-
-**MANOJ KUAMR B V** -  A passionate learner and aspiring software engineer with a interest in data structures and algorithms. This repository is part of my ongoing learning to deepen my understanding of computer science fundamentals.
