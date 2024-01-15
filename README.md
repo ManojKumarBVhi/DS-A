@@ -5,15 +5,16 @@ Welcome to DSA Repository!This repository is a curated collection of programs an
 This repository contains a range of programs and exercises covering key areas in data structures and algorithms, including but not limited to:
 
 ### ****Basic Data Structures**:** 
-Stacks,
-Queues,
-Linked Lists,
-Trees (Soon),
-Graphs (Soon).
+- Stacks
+- Queues
+- Linked Lists
+- Trees(Soon)
+- Graphs(Soon)
 
 
 ### **Algorithmic Techniques:** 
-Recursion, Dynamic Programming
+- Recursion 
+- Dynamic Programming
 
 ### **About Me**
 
