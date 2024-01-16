@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+  int data;
+  struct node *next;
+};
+
+typedef struct node * NODE;
+
+NODE head;
+
+NODE insert_first(NODE head, int item){
+  NODE newnode = (NODE)malloc(sizeof(struct node));
+  if(newnode == NULL){
+    printf("\n Insufficient Memory");
+    exit(0);
+  }
+  newnode->data = item;
+  newnode->next = head;
+
+  return newnode;
+}
+
+NODE insert_last(NODE head, int item){
+  NODE newnode = (NODE)malloc(sizeof(struct node));
+  if(newnode == NULL){
+    printf("\n Insufficient Memeory");
+    exit(0);
+  }
+  newnode->data = item;
+  newnode->next = NULL;
+  if(head == NULL){
+    return newnode;
+  }
+  NODE temp = head;
+  while(temp->next != NULL){
+    temp = temp->next;
+  }
+  temp->next = newnode;
+
+  return head;
+}
