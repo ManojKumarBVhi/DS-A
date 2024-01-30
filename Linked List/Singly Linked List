@@ -190,6 +190,25 @@ void display_list(NODE head){
     }
 }
 
+NODE reverse(NODE head){
+	if(head == NULL){
+		printf("Empty List");
+		exit(0);
+	}
+	else{
+		NODE prev,next = NULL;
+		NODE current = head;
+		while(current != NULL){
+			next = current->next;
+			current->next = prev;
+			prev = current;
+			current = next;
+		}
+		head = prev;
+	}
+	return head;
+}
+
 int main(){
     int ch,item,search;
     NODE head = NULL;
@@ -202,7 +221,8 @@ int main(){
         printf("\n 6. Delete last element");
         printf("\n 7. Delete after specific place");
         printf("\n 8. Display the list");
-        printf("\n 9. Exit");
+        printf("\n 9. Reverse the list");
+        printf("\n 10. Exit");
         printf("\n Enter your option : ");
         scanf("%d",&ch);
             switch(ch){
@@ -234,7 +254,9 @@ int main(){
                         break;
                 case 8: display_list(head);
                         break;
-                case 9: printf("\n Thank you");
+                case 9:	head = reverse(head);
+                	break;
+                case 10: printf("\n Thank you");
                         exit(0);
                 default:    printf("\n Invalid Option");
                             exit(0);
