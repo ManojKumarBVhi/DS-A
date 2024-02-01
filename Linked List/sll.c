@@ -109,6 +109,35 @@ NODE insert_after(NODE head,int search, int item){
   return head;
 }
 
+NODE insert_before(NODE head, int search, int item){
+	NODE newnode = (NODE)malloc(sizeof(struct node));
+	newnode->data = item;
+	newnode->next = NULL;
+	if(head == NULL){
+		printf("\n Empty list");
+		free(newnode);
+		exit(0);
+	}
+	if(head->data == search){
+		newnode->next = head;
+		head = newnode;
+		
+		return head;
+	}
+	else{
+		NODE prev = NULL;
+		NODE temp = head;
+		while(temp != NULL && temp->data != search){
+			prev = temp;
+			temp = temp->next;
+		}
+		newnode->next = prev->next;
+		prev->next = newnode;
+				
+	}
+	return head;
+}
+		
 NODE delete_first(NODE head){
     if(head == NULL){
         printf("\n Empty list");
@@ -175,6 +204,39 @@ NODE delete_after(NODE head, int search){
     return head;
 }
 
+NODE delete_before(NODE head, int search){
+	NODE ptr1 = NULL;
+	int del_item;
+	if(head == NULL){
+		printf("\n Empty List");
+		return NULL;
+	}
+	if(head->next != NULL && head->next->data == search){
+		del_item = head->data;
+		ptr1 = head;
+		head = head->next;
+		printf("\n Deleted node is : %d",del_item);
+		free(ptr1);
+		return head;
+	}
+	if(head->data == search){
+		printf("\n No node before %d node",search);
+		return head;
+	}
+	else{
+		NODE temp = head;
+		NODE ptr2 = NULL;
+		while(temp!= NULL && temp->data != search){
+			ptr2 = ptr1;
+			ptr1 = temp;
+			temp = temp->next;
+		}
+		ptr2->next = temp;
+		free(ptr1);
+	}
+	return head;
+}
+	
 void display_list(NODE head){
     if(head == NULL){
         printf("\n Empty list");
@@ -196,7 +258,8 @@ NODE reverse(NODE head){
 		exit(0);
 	}
 	else{
-		NODE prev,next = NULL;
+		NODE prev = NULL;
+		NODE next = NULL;
 		NODE current = head;
 		while(current != NULL){
 			next = current->next;
@@ -217,12 +280,14 @@ int main(){
         printf("\n 2. Insert element at first");
         printf("\n 3. Insert Element at last");
         printf("\n 4. Insert after specific place");
-        printf("\n 5. Delete first element");
-        printf("\n 6. Delete last element");
-        printf("\n 7. Delete after specific place");
-        printf("\n 8. Display the list");
-        printf("\n 9. Reverse the list");
-        printf("\n 10. Exit");
+        printf("\n 5. Insert before specified place");
+        printf("\n 6. Delete first element");
+        printf("\n 7. Delete last element");
+        printf("\n 8. Delete after specific place");
+        printf("\n 9. Delete before specific place");
+        printf("\n 10. Display the list");
+        printf("\n 11. Reverse the list");
+        printf("\n 12. Exit");
         printf("\n Enter your option : ");
         scanf("%d",&ch);
             switch(ch){
@@ -244,22 +309,33 @@ int main(){
                         scanf("%d",&item);
                         head = insert_after(head,search,item);
                         break;
-                case 5: head = delete_first(head);
+                case 5: printf("Enter the element to search to insert before : ");
+                	scanf("%d",&search);
+                	printf("Enter a the element to insert : ");
+                	scanf("%d",&item);
+                	head = insert_before(head,search,item);
                         break;
-                case 6: head = delete_last(head);
+                case 6: head = delete_first(head);
                         break;
-                case 7: printf("\n Enter the searching item : ");
+                case 7: head = delete_last(head);
+                	break;
+                case 8: printf("\n Enter the searching item : ");
                         scanf("%d",&search);
                         head = delete_after(head,search);
                         break;
-                case 8: display_list(head);
-                        break;
-                case 9:	head = reverse(head);
+                case 9: printf("\n Enter the searching element : ");
+                	scanf("%d", &search);
+                	head = delete_before(head,search);
                 	break;
-                case 10: printf("\n Thank you");
-                        exit(0);
-                default:    printf("\n Invalid Option");
-                            exit(0);
-        }
-    }
+                case 10: display_list(head);
+                         break;
+                case 11: head = reverse(head);
+                	 break;
+                case 12: printf("\n Thank you");
+                         exit(0);
+                default: printf("\n Invalid Option");
+                         exit(0);
+          }
+     }
+     return 0;
 }
