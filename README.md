@@ -8,9 +8,8 @@ This repository contains a range of programs and exercises covering key areas in
 - Stacks
 - Queues
 - Linked Lists
-- Trees(Soon)
-- Graphs(Soon)
-
+- Trees
+- Graphs
 
 ### **Algorithmic Techniques:** 
 - Recursion 
